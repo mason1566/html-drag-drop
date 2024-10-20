@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag 'n Drop</title>
+    <style>
+        :root, html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        #container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+        .area {
+            width: 50%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+        }
+        #area-1 {
+            background-color: red;
+        }
+        #drag-object {
+            width: 50%;
+            aspect-ratio: 1/1;
+            background-color: rgb(231, 231, 231);
+        }
+        #drop-area {
+            width: 50%;
+            aspect-ratio: 1/1;
+            background-color: rgb(83, 83, 83);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="area-1" class="area">
+            <div id="drag-object" draggable="true"></div>
+        </div>
+        <div id="area-2" class="area">
+            <div id="drop-area"></div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
