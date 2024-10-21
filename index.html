@@ -39,14 +39,50 @@
 <body>
     <div id="container">
         <div id="area-1" class="area">
-            <div id="drag-object" draggable="true"></div>
+            <div id="drag-object" draggable="true" ondragstart="dragstartHandler(event)"></div>
         </div>
-        <div id="area-2" class="area">
-            <div id="drop-area"></div>
+        <div id="area-2" class="area" >
+            <div id="drop-area" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)"></div>
         </div>
     </div>
-    <script>
 
+
+    <script>
+        function dragstartHandler(ev) {
+            // ev.preventDefault();
+            // Add the target element's id to the data transfer object
+            ev.dataTransfer.setData("text/plain", ev.target.id);
+            // Set the drag effect
+            ev.dataTransfer.dropEffect = "move";
+        }
+
+        function dragoverHandler(ev) {
+            ev.preventDefault();
+            ev.dataTransfer.dropEffect = "move";
+        }
+
+        function dropHandler(ev) {
+            ev.preventDefault();
+            // Get the id of the target and add the moved element to the target's DOM
+            const data = ev.dataTransfer.getData("text/plain");
+            swapElements(document.getElementById(data), ev.target);
+
+        }
+
+        function swapElements(e1, e2) {
+            const p1 = e1.parentElement;
+            const p2 = e2.parentElement;
+
+            p1.appendChild(e2);
+            p2.appendChild(e1);
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            // Get the element by id
+            const element = document.getElementById("drag-object");
+            // Add the ondragstart event listener
+            element.addEventListener("dragstart", dragstartHandler);
+        });
     </script>
 </body>
 </html>
